@@ -35,7 +35,7 @@ exports.Main = Component.specialize(/** @lends Main# */ {
 			{
 				if (event && event.target && event.target.name) 
 				{
-					console.log("SELECT BY ID '"+name+"'");
+					console.log("SELECT BY ID '"+event.target.name+"'");
 					event.preventDefault();
 					event.stopPropagation();
 					window.SELECTED=event.target.name;
