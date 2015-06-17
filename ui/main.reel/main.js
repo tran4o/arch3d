@@ -15,9 +15,20 @@ exports.Main = Component.specialize(/** @lends Main# */ {
             window.MAIN=this;
 		}
     },
-	handleNavItemAction: 
-	{ 
-		value: function(event) 
+    
+    _enterDocument : 
+    {
+    	value : function(firstTime) 
+    	{
+        	this.super(firstTime);
+        	if (this.templateObjects.sceneView.viewPoint && this.templateObjects.sceneView.viewPoint.id) 
+        		this.fix(this.templateObjects.sceneView.viewPoint.id);
+    	}
+    },
+
+	fix: 
+	{
+		value : function(id) 
 		{
 			//------------------------------------------------------
 			function onClick(event) 
@@ -32,11 +43,6 @@ exports.Main = Component.specialize(/** @lends Main# */ {
 				}
 			}
 			//------------------------------------------------------
-			
-			this.templateObjects.sceneView.stop();
-			this.templateObjects.sceneView.viewPoint = event.target.viewPoint;
-			this.templateObjects.sceneView.allowsViewPointControl = true; //true; //event.target.viewPoint === this.templateObjects.planetVP;
-			var id = event.target.viewPoint.id;
 			var that=this;
 			function onDone(html) {
 				that.__cached[id]=html;
@@ -75,7 +81,17 @@ exports.Main = Component.specialize(/** @lends Main# */ {
 				xmlhttp.setRequestHeader("Cache-Control", "no-cache"); // For no cache
 				xmlhttp.send();
 			}
-			
+		}
+	},
+
+    handleNavItemAction: 
+	{ 
+		value: function(event) 
+		{
+			this.templateObjects.sceneView.stop();
+			this.templateObjects.sceneView.viewPoint = event.target.viewPoint;
+			this.templateObjects.sceneView.allowsViewPointControl = true; //true; //event.target.viewPoint === this.templateObjects.planetVP;
+			this.fix(event.target.viewPoint.id);
 		}
 	},    
 	handleTESTAction: {
