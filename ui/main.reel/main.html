@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Main</title>
+
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="../../html/styles.css">
+
+    <script type="text/montage-serialization">
+        {
+			"nav": {
+				"prototype": "montage/ui/repetition.reel",
+				"properties": {
+					"element": { "#": "nav" },
+					"content": [
+						{ "label": "EINFAHRT", "value": { "@": "CAMERA0" } },
+						{ "label": "AUSSENANSICHT", "value": { "@": "CAMERA1" } },
+						{ "label": "LOKHALLE", "value": { "@": "CAMERA2" } },
+						{ "label": "HOTEL", "value": { "@": "CAMERA3" } },
+						{ "label": "FOYER", "value": { "@": "CAMERA4" } },
+						{ "label": "SHOWKÜCHE", "value": { "@": "CAMERA5" } },
+						{ "label": "SKYBAR", "value": { "@": "CAMERA6" } },
+						{ "label": "EVENTHALLE", "value": { "@": "CAMERA7" } },
+						{ "label": "CLUB", "value": { "@": "CAMERA8" } }
+					]
+				}
+			},
+			"CAMERA0" : {
+				"prototype": "mjs-volume/runtime/node",
+				"properties": {
+					"id": "Camera_3",
+					"scene": { "@": "scene" }
+				}
+			},
+			"CAMERA1" : {
+				"prototype": "mjs-volume/runtime/node",
+				"properties": {
+					"id": "Camera_7",
+					"scene": { "@": "scene" }
+				}
+			},
+			"CAMERA2" : {
+				"prototype": "mjs-volume/runtime/node",
+				"properties": {
+					"id": "Camera_1",
+					"scene": { "@": "scene" }
+				}
+			},
+			"CAMERA3" : {
+				"prototype": "mjs-volume/runtime/node",
+				"properties": {
+					"id": "Camera_2",
+					"scene": { "@": "scene" }
+				}
+			},
+			"CAMERA4" : {
+				"prototype": "mjs-volume/runtime/node",
+				"properties": {
+					"id": "Camera_001",
+					"scene": { "@": "scene" }
+				}
+			},
+			"CAMERA5" : {
+				"prototype": "mjs-volume/runtime/node",
+				"properties": {
+					"id": "Camera_0",
+					"scene": { "@": "scene" }
+				}
+			},
+			"CAMERA6" : {
+				"prototype": "mjs-volume/runtime/node",
+				"properties": {
+					"id": "Camera_5",
+					"scene": { "@": "scene" }
+				}
+			},
+			"CAMERA7" : {
+				"prototype": "mjs-volume/runtime/node",
+				"properties": {
+					"id": "Camera_6",
+					"scene": { "@": "scene" }
+				}
+			},
+			"CAMERA8" : {
+				"prototype": "mjs-volume/runtime/node",
+				"properties": {
+					"id": "Camera_4",
+					"scene": { "@": "scene" }
+				}
+			},
+
+
+
+
+
+
+
+
+            "owner": {
+                "properties": {
+                    "element": {"#": "main"}
+                }
+            },
+			 "scene": {
+                "prototype": "mjs-volume/runtime/scene",
+                "properties": {
+                    "path": "../../models/duck.gltf"
+					,"nodesShouldBeHitTested" : true
+ 					,"materialsShouldBeHitTested" : false
+                }
+            },
+            "sceneView": {
+                "prototype": "mjs-volume/ui/scene-view.reel",
+                "properties": {
+                    "element": { "#": "sceneView" },
+                    "scene": { "@": "scene" },
+					"viewPoint": { "@" : "CAMERA0" },
+					"allowsViewPointControl" : true,
+					"showBBOX" : false
+                }
+            },
+			"navItem": {
+                "prototype": "digit/ui/button.reel",
+                "properties": {
+                    "element": { "#": "navItem" }
+                },
+                "bindings": {
+                    "label": { "<-": "@nav.objectAtCurrentIteration.label" },
+                    "viewPoint": { "<-": "@nav.objectAtCurrentIteration.value" },
+                    "classList.has('is-selected')": {"<-": "@sceneView.viewPoint == viewPoint"}
+                },
+                "listeners": [{
+                    "type": "action",
+                    "listener": {
+                        "@": "owner"
+                    }
+                }]
+            }      
+		}
+    </script>
+	<style>
+		body {
+			font-family : Arial, Helvetica Neue, Helvetica, sans-serif;
+			font-size : 15px;
+			line-height : 1.3:
+		}
+		.header_bar {
+			position : absolute;
+			top : 0;
+			height : 60px;
+			left : 0;
+			right : 0;
+			background-color : rgba(0,0,0,0.4); 
+			/*background-image : url("../../html/logo.png");
+			background-size : 400px 47px;
+			background-position : left center;
+			background-repeat : no-repeat;*/			
+			text-align : center;			
+		}
+
+		.html_details {
+			position : absolute;
+			top : 60px;
+			bottom : 0;
+			left : 0;
+			width : 400px;
+			/* background-color : rgba(255,255,255,0.4); */
+			position: absolute;
+			padding-left: 20px;
+			padding-right: 20px;
+			box-sizing: border-box;
+			overflow : visible;
+			text-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
+			color : white;
+			pointer-events: none;
+		}
+		
+		.scene_view {
+			position : absolute;
+			top : 	0px;
+			left : 0;
+			right : 0px;
+			bottom : 0;
+			overflow : hidden;
+		}
+
+		.header_button  {
+			border : 0;
+			padding : 0;
+			margin : 0;
+			padding-top : 10px;
+			padding-left : 10px;
+			padding-right : 10px;
+			padding-bottom : 10px;
+			display : inline;
+			cursor : pointer;
+			font-size : 20px;
+			line-height : 1;
+			border-radius : 0;
+			margin-top : 10px;
+			height : auto;
+			color : white;
+			font-weight : bold;
+			text-shadow: 0px 0px 4px rgba(0, 0, 0, 1);
+		}
+		
+		.header_button:hover {
+			background-color : rgba(0,0,0,0.6);
+			color : #F0F0F0;
+		}
+		
+		
+		a.link {
+			/*background : #a0a0a0;
+			border-radius : 5px;
+			line-height : 4em;
+			padding : 1em;*/
+			color : white;
+			text-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
+			line-height : 1.7;
+			text-decoration : none;
+			font-weight : bold;
+			pointer-events: auto;
+		}
+		a.link:hover {
+			text-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
+			color : #f0f0f0;
+		}		
+		div.status {
+			font-size : 200%;
+			color : red;
+			font-weight : bold;		
+		}
+	</style>
+</head>
+<body>
+    <div data-montage-id="main" data-montage-skin="custom" class="Main">
+		<div data-montage-id="sceneView" class="scene_view" style="background-color:rgb(151,215,255)"></div>
+		<nav data-montage-id="nav" class="header_bar">
+			<button data-montage-id="navItem" class="header_button"></button>
+        </nav>
+        <div class="html_details"></div>
+	</div>	
+</body>
+</html>
