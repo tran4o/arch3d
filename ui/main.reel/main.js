@@ -63,8 +63,7 @@ exports.Main = Component.specialize(/** @lends Main# */ {
 				xmlhttp.onreadystatechange = function()
 				{
 				  if (xmlhttp.readyState == 4 && xmlhttp.status != 200) {
-				    document.getElementById("status").style.display="block";
-				    document.getElementById("status").innerHTML=url+"&nbsp;&nbsp;|&nbsp;&nbsp;"+xmlhttp.status;
+					  document.querySelector(".html_details").innerHTML="<div class='status'>"+url+"&nbsp;&nbsp;|&nbsp;&nbsp;"+xmlhttp.status+"</div>";
 				  }
 				  if (xmlhttp.readyState == 4 && xmlhttp.status == 200) 
 				  {

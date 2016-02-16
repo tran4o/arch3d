@@ -14,29 +14,29 @@
 				"properties": {
 					"element": { "#": "nav" },
 					"content": [
-						{ "label": "LINK1", "value": { "@": "CAMERA0" } },
-						{ "label": "LINK2", "value": { "@": "CAMERA1" } },
-						{ "label": "LINK3", "value": { "@": "CAMERA2" } },
-						{ "label": "LINK4", "value": { "@": "CAMERA3" } },
-						{ "label": "LINK5", "value": { "@": "CAMERA4" } },
-						{ "label": "LINK6", "value": { "@": "CAMERA5" } },
-						{ "label": "LINK7", "value": { "@": "CAMERA6" } },
-						{ "label": "LINK8", "value": { "@": "CAMERA7" } },
-						{ "label": "LINK9", "value": { "@": "CAMERA8" } }
+						{ "label": "EINFAHRT", "value": { "@": "CAMERA0" } },
+						{ "label": "AUSSENANSICHT", "value": { "@": "CAMERA1" } },
+						{ "label": "LOKHALLE", "value": { "@": "CAMERA2" } },
+						{ "label": "HOTEL", "value": { "@": "CAMERA3" } },
+						{ "label": "FOYER", "value": { "@": "CAMERA4" } },
+						{ "label": "SHOWKÜCHE", "value": { "@": "CAMERA5" } },
+						{ "label": "SKYBAR", "value": { "@": "CAMERA6" } },
+						{ "label": "EVENTHALLE", "value": { "@": "CAMERA7" } },
+						{ "label": "CLUB", "value": { "@": "CAMERA8" } }
 					]
 				}
 			},
 			"CAMERA0" : {
 				"prototype": "mjs-volume/runtime/node",
 				"properties": {
-					"id": "Camera_001",
+					"id": "Camera_3",
 					"scene": { "@": "scene" }
 				}
 			},
 			"CAMERA1" : {
 				"prototype": "mjs-volume/runtime/node",
 				"properties": {
-					"id": "Camera_0",
+					"id": "Camera_7",
 					"scene": { "@": "scene" }
 				}
 			},
@@ -57,14 +57,14 @@
 			"CAMERA4" : {
 				"prototype": "mjs-volume/runtime/node",
 				"properties": {
-					"id": "Camera_3",
+					"id": "Camera_001",
 					"scene": { "@": "scene" }
 				}
 			},
 			"CAMERA5" : {
 				"prototype": "mjs-volume/runtime/node",
 				"properties": {
-					"id": "Camera_4",
+					"id": "Camera_0",
 					"scene": { "@": "scene" }
 				}
 			},
@@ -85,7 +85,7 @@
 			"CAMERA8" : {
 				"prototype": "mjs-volume/runtime/node",
 				"properties": {
-					"id": "Camera_7",
+					"id": "Camera_4",
 					"scene": { "@": "scene" }
 				}
 			},
@@ -170,9 +170,10 @@
 			padding-left: 20px;
 			padding-right: 20px;
 			box-sizing: border-box;
-			overflow : auto;
+			overflow : visible;
 			text-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
 			color : white;
+			pointer-events: none;
 		}
 		
 		.scene_view {
@@ -220,21 +221,16 @@
 			line-height : 1.7;
 			text-decoration : none;
 			font-weight : bold;
+			pointer-events: auto;
 		}
 		a.link:hover {
 			text-shadow: 0px 0px 3px rgba(0, 0, 0, 1);
-			color : #a0a0a0;
+			color : #f0f0f0;
 		}		
 		div.status {
-			padding : 1em;
-			text-align : right;
 			font-size : 200%;
 			color : red;
 			font-weight : bold;		
-			position : absolute;
-			bottom : 0;
-			left : 0;	
-			right : 0;
 		}
 	</style>
 </head>
@@ -245,7 +241,6 @@
 			<button data-montage-id="navItem" class="header_button"></button>
         </nav>
         <div class="html_details"></div>
-		<div id="status" class="status" style="display:none"></div>	
 	</div>	
 </body>
 </html>
