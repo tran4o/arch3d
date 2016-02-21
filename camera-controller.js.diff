@@ -1,5 +1,5 @@
 diff --git a/controllers/camera-controller.js b/controllers/camera-controller.js
-index 130caa5..7980c53 100755
+index 855b290..7980c53 100755
 --- a/controllers/camera-controller.js
 +++ b/controllers/camera-controller.js
 @@ -76,12 +76,25 @@ exports.CameraController = Montage.specialize( {
@@ -36,24 +36,27 @@ index 130caa5..7980c53 100755
              mat4.rotateVec3(this.viewPoint.glTFElement.transform.matrix, direction);            
              eye[0] += wheelStep * direction[0];
              eye[1] += wheelStep * direction[1];
-@@ -150,16 +164,12 @@ exports.CameraController = Montage.specialize( {
+@@ -150,14 +164,15 @@ exports.CameraController = Montage.specialize( {
  
      translate: {
          value: function(event) {
 -            //this._transform.matrix = this.viewPoint.glTFElement.worldMatrix;
              if (this.moving == false)
                   return;
- 
-             var xDelta = event.translateX - this._lastPosition[0];
-             var yDelta = event.translateY - this._lastPosition[1];
- 
--            //this._lastPosition[0] = event.translateX;
--            //this._lastPosition[1] = event.translateY;
--
+-            var xDelta = event.translateX-this._lastPosition[0];
+-            var yDelta = event.translateY-this._lastPosition[1];
++
++            var xDelta = event.translateX - this._lastPosition[0];
++            var yDelta = event.translateY - this._lastPosition[1];
++
              xDelta  *=  0.05;
              yDelta  *=  -0.05;
- 
-@@ -170,7 +180,6 @@ exports.CameraController = Montage.specialize( {
+-            //-----------------------------------------------------------
++
+             //if (this._axisUp == null) {
+                 this._axisUp = vec3.createFrom(0, 1, 0);
+                 mat4.rotateVec3(this._transform.matrix, this._axisUp);
+@@ -165,26 +180,20 @@ exports.CameraController = Montage.specialize( {
              var hasTarget = false;
              var targetPosition;
              if (hasTarget == false) {
@@ -61,7 +64,56 @@ index 130caa5..7980c53 100755
                  var sceneBBox =  this.sceneBBox;
                  targetPosition = [
                      (sceneBBox[0][0] + sceneBBox[1][0]) / 2,
-@@ -226,7 +235,7 @@ exports.CameraController = Montage.specialize( {
+                     (sceneBBox[0][1] + sceneBBox[1][1]) / 2,
+                     (sceneBBox[0][2] + sceneBBox[1][2]) / 2];
+             }
+-            
+-            
+             var direction = vec3.create();
+             var eye = vec3.create(this._transform.translation);
+ 
+-            var xvec = vec3.createFrom(1, 0, 0);
+-            mat4.rotateVec3(this._transform.matrix, xvec);            
+-
+             var len = -1;
+             var avec = vec3.createFrom(0, 0, len);
+             mat4.rotateVec3(this._transform.matrix, avec);            
+             targetPosition=[eye[0]+avec[0],eye[1]+avec[1],eye[2]+avec[2]];
+-                            
++
+             direction[0] = targetPosition[0] - eye[0];
+             direction[1] = targetPosition[1] - eye[1];
+             direction[2] = targetPosition[2] - eye[2];
+@@ -199,14 +208,21 @@ exports.CameraController = Montage.specialize( {
+ 
+             var cameraMat = mat4.identity();
+ 
+-			var ok = this.__des;
+-			if (this.__des == undefined) {
+-				this.__des=Math.abs(yDelta) > Math.abs(xDelta);
+-			}
+-            if (this.__des)
+-                mat4.rotate(cameraMat, -yDelta*0.65, right);
++            var ratio = 0;
++            if (Math.abs(yDelta) > Math.abs(xDelta)) {
++                ratio = Math.abs(yDelta) / Math.abs(xDelta);
++            } else {
++                ratio = Math.abs(xDelta) / Math.abs(yDelta);
++            }
++
++            if (ratio > 0.5) {
++                mat4.rotate(cameraMat, xDelta, axisUpAdjusted);
++                mat4.rotate(cameraMat, yDelta, right);
++            } else
++            if (Math.abs(yDelta) > Math.abs(xDelta))
++                mat4.rotate(cameraMat, yDelta, right);
+             else
+-                mat4.rotate(cameraMat, -xDelta, axisUpAdjusted);
++                mat4.rotate(cameraMat, xDelta, axisUpAdjusted);
+ 
+             eye[0] -= targetPosition[0];
+             eye[1] -= targetPosition[1];
+@@ -219,7 +235,7 @@ exports.CameraController = Montage.specialize( {
              eye[2] += targetPosition[2];
  
              var  rotationMatrix = mat4.identity();
@@ -70,7 +122,7 @@ index 130caa5..7980c53 100755
  
              var translationMatrix = mat4.identity();
              mat4.translate(translationMatrix, eye);
-@@ -242,17 +251,39 @@ exports.CameraController = Montage.specialize( {
+@@ -235,17 +251,39 @@ exports.CameraController = Montage.specialize( {
              this.moving = true;
              if (this._transform == null) {
                  this._transform = Object.create(Transform).init();
