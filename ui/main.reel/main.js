@@ -2,6 +2,7 @@
  * @module ui/main.reel
  */
 var Component = require("montage/ui/component").Component;
+var SceneHelper = require("mjs-volume/runtime/scene-helper").SceneHelper;
 
 /**
  * @class Main
@@ -10,11 +11,13 @@ var Component = require("montage/ui/component").Component;
 exports.Main = Component.specialize(/** @lends Main# */ {
     constructor: {
         value: function Main() 
-		{
-            this.super();
-            window.MAIN=this;
-		}
+        {
+                this.super();
+                window.MAIN=this;
+        }
     },
+
+    _viewPoints: { value: {}, writeable: true },
     
     _enterDocument : 
     {
@@ -23,6 +26,14 @@ exports.Main = Component.specialize(/** @lends Main# */ {
         	this.super(firstTime);
         	if (this.templateObjects.sceneView.viewPoint && this.templateObjects.sceneView.viewPoint.id) 
         		this.fix(this.templateObjects.sceneView.viewPoint.id);
+
+          for (var k in this.templateObjects) {
+            if (k.startsWith("CAMERA")) {
+                var elem = this.templateObjects[k].glTFElement;
+                this._viewPoints[k] = JSON.parse(JSON.stringify(elem.transform.matrix));
+            }
+          }
+
     	}
     },
 
@@ -87,9 +98,17 @@ exports.Main = Component.specialize(/** @lends Main# */ {
 	{ 
 		value: function(event) 
 		{
-			this.templateObjects.sceneView.stop();
-			this.templateObjects.sceneView.viewPoint = event.target.viewPoint;
-			this.templateObjects.sceneView.allowsViewPointControl = true; //true; //event.target.viewPoint === this.templateObjects.planetVP;
+      var sceneView = this.templateObjects.sceneView;
+
+			sceneView.stop();
+			sceneView.viewPoint = event.target.viewPoint;
+
+      var newVP = this._viewPoints[event.target.viewPoint.identifier];
+      var transMat = newVP;
+      sceneView.changeViewPointTrans(transMat);
+      sceneView.cameraController.changeViewPointTrans(transMat);
+
+			sceneView.allowsViewPointControl = true; //true; //event.target.viewPoint === this.templateObjects.planetVP;
 			this.fix(event.target.viewPoint.id);
 		}
 	},    
