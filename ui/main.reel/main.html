@@ -89,54 +89,46 @@
 					"scene": { "@": "scene" }
 				}
 			},
-
-
-
-
-
-
-
-
-            "owner": {
-                "properties": {
-                    "element": {"#": "main"}
-                }
-            },
-			 "scene": {
-                "prototype": "mjs-volume/runtime/scene",
-                "properties": {
-                    "path": "../../models/duck.gltf"
-					,"nodesShouldBeHitTested" : true
- 					,"materialsShouldBeHitTested" : false
-                }
-            },
-            "sceneView": {
-                "prototype": "mjs-volume/ui/scene-view.reel",
-                "properties": {
-                    "element": { "#": "sceneView" },
-                    "scene": { "@": "scene" },
-					"viewPoint": { "@" : "CAMERA0" },
-					"allowsViewPointControl" : true,
-					"showBBOX" : false
-                }
-            },
+      "owner": {
+          "properties": {
+              "element": {"#": "main"}
+          }
+      },
+			"scene": {
+          "prototype": "mjs-volume/runtime/scene",
+          "properties": {
+              "path": "../../models/duck.gltf"
+					   ,"nodesShouldBeHitTested" : true
+ 					   ,"materialsShouldBeHitTested" : false
+          }
+      },
+      "sceneView": {
+          "prototype": "mjs-volume/ui/scene-view.reel",
+          "properties": {
+              "element": { "#": "sceneView" },
+              "scene": { "@": "scene" },
+					    "viewPoint": { "@" : "CAMERA0" },
+					    "allowsViewPointControl" : true,
+					    "showBBOX" : false
+          }
+      },
 			"navItem": {
-                "prototype": "digit/ui/button.reel",
-                "properties": {
-                    "element": { "#": "navItem" }
-                },
-                "bindings": {
-                    "label": { "<-": "@nav.objectAtCurrentIteration.label" },
-                    "viewPoint": { "<-": "@nav.objectAtCurrentIteration.value" },
-                    "classList.has('is-selected')": {"<-": "@sceneView.viewPoint == viewPoint"}
-                },
-                "listeners": [{
-                    "type": "action",
-                    "listener": {
-                        "@": "owner"
-                    }
-                }]
-            }      
+          "prototype": "digit/ui/button.reel",
+          "properties": {
+              "element": { "#": "navItem" }
+          },
+          "bindings": {
+              "label": { "<-": "@nav.objectAtCurrentIteration.label" },
+              "viewPoint": { "<-": "@nav.objectAtCurrentIteration.value" },
+              "classList.has('is-selected')": {"<-": "@sceneView.viewPoint == viewPoint"}
+          },
+          "listeners": [{
+              "type": "action",
+              "listener": {
+                  "@": "owner"
+              }
+          }]
+      }      
 		}
     </script>
 	<style>
