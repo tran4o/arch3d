@@ -40,10 +40,13 @@ body {
 
 .footer {
   position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: 100px;
+  text-align: center;
+  bottom: 5px;
+  left: 33%;
+  width: 450px;
+  height: 90px;
 
+  background-color : rgba(0,0,0,0.4); 
   background-image: url("../../html/footer_logos.svg");
   background-position: center bottom;
   background-size: contain;
