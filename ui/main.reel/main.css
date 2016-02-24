@@ -44,12 +44,12 @@ body {
   bottom: 5px;
   left: 33%;
   width: 450px;
-  height: 90px;
+  height: 75px;
 
   background-color : rgba(0,0,0,0.4); 
   background-image: url("../../html/footer_logos.svg");
-  background-position: center bottom;
-  background-size: contain;
+  background-position: 10px;
+  background-size: 430px 85px;
   background-repeat: no-repeat;
 }
 
