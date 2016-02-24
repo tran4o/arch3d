@@ -4345,6 +4345,15 @@
             },
             "type": "perspective"
         },
+        "camera_001": {
+            "perspective": {
+                "aspect_ratio": 1.77778,
+                "xfov": 67.3801,
+                "zfar": 100,
+                "znear": 0.1
+            },
+            "type": "perspective"
+        },
         "camera_8": {
             "perspective": {
                 "aspect_ratio": 1.77778,
@@ -8146,7 +8155,7 @@
             "name": "Camera_0"
         },
         "Camera_001": {
-            "camera": "camera_8",
+            "camera": "camera_001",
             "children": [],
             "matrix": [
                 -0.301996,
@@ -8328,6 +8337,29 @@
                 1
             ],
             "name": "Camera_7"
+        },
+        "Camera_8": {
+            "camera": "camera_8",
+            "children": [],
+            "matrix": [
+                -0.227305,
+                0.391999,
+                0.005868,
+                0,
+                0.007615,
+                -0.002367,
+                0.453102,
+                0,
+                0.391969,
+                0.227368,
+                -0.005399,
+                0,
+                17.294193,
+                7.214615,
+                0.293599,
+                1
+            ],
+            "name": "Camera_8"
         },
         "EXT_GC_pod": {
             "children": [],
@@ -9774,6 +9806,7 @@
                 "Camera_6",
                 "REKLAMI",
                 "Camera_001",
+                "Camera_8",
                 "node",
                 "node_001",
                 "Plane"
