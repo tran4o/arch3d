@@ -64,7 +64,6 @@ button::-moz-focus-inner { border: 0; }
 .header_button  {
   font-family: Dosis;
   border: 0;
-  padding : 0;
   margin : 0;
   padding-top: 10px;
   padding-right: 10px;
@@ -80,7 +79,7 @@ button::-moz-focus-inner { border: 0; }
   font-weight : bold;
 }
 
-.separator {
+.header_button + .separator {
   border: 0;
   content: '';
   display: inline-block;
