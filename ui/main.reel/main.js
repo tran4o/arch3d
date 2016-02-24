@@ -57,7 +57,7 @@ exports.Main = Component.specialize(/** @lends Main# */ {
 			var that=this;
 			function onDone(html) {
 				that.__cached[id]=html;
-				document.querySelector(".html_details").innerHTML=html;
+				//document.querySelector(".html_details").innerHTML=html;
 			}
 			if (!this.__cached)
 				this.__cached={};
