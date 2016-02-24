@@ -94,7 +94,15 @@ exports.Main = Component.specialize(/** @lends Main# */ {
 		}
 	},
 
-    handleNavItemAction: 
+  handleFirstFrameDidRender: {
+    value: function(event) {
+      console.log("frame did render");
+      var loadScreen = document.getElementById("loading_screen");
+      loadScreen.style.display = "none";
+    }
+  },
+
+  handleNavItemAction: 
 	{ 
 		value: function(event) 
 		{
@@ -112,9 +120,10 @@ exports.Main = Component.specialize(/** @lends Main# */ {
 			this.fix(event.target.viewPoint.id);
 		}
 	},    
+
 	handleTESTAction: {
 		value: function(event) {
 			alert("The user clicked the door!");
 		}
-	}
+	},
 });

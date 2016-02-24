@@ -7,6 +7,18 @@ body {
   line-height: 1.3;
 }
 
+#loading_screen {
+  background-image: url("../../html/loading-screen.jpg");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+
+  position: absolute;
+  width: 100%;
+  height: 100%;
+
+  z-index: 1000;
+}
+
 .header_bar {
   position : absolute;
   top : 0;
