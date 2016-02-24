@@ -14,10 +14,10 @@ body {
   right : 0;
   padding-right: 5px;
   background-color : rgba(0,0,0,0.8); 
-  /*background-image : url("../../html/logo.png");
-  background-size : 400px 47px;
-  background-position : left center;
-  background-repeat : no-repeat;*/			
+  background-image : url("../../html/logo_element.svg");
+  background-position : 15px;
+  background-size: 45px 47px;
+  background-repeat : no-repeat;
   text-align : right;			
 }
 
