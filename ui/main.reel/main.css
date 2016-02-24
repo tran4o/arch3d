@@ -50,6 +50,7 @@ body {
 button::-moz-focus-inner { border: 0; }
 
 .header_button  {
+  font-family: Dosis;
   border: 0;
   padding : 0;
   margin : 0;
@@ -72,10 +73,11 @@ button::-moz-focus-inner { border: 0; }
   content: '';
   display: inline-block;
   background: white;
-  margin-right: -7px;
-  margin-left: -7px;
-  height: 18px;
-  width: 2px;
+  margin-bottom: -0.2em;
+  margin-right: -0.5em;
+  margin-left: -0.5em;
+  height: 1em;
+  width: 0.1em;
 }
 
 .header_button:hover {
