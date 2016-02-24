@@ -119,7 +119,13 @@
 					    "viewPoint": { "@" : "CAMERA0" },
 					    "allowsViewPointControl" : true,
 					    "showBBOX" : false
-          }
+          },
+          "listeners": [{
+              "type": "firstFrameDidRender",
+              "listener": {
+                  "@": "owner"
+              }
+          }]
       },
 			"navItem": {
           "prototype": "digit/ui/button.reel",
