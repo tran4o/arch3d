@@ -17,11 +17,27 @@ body {
   right : 0;
   padding-right: 5px;
   background-color : rgba(0,0,0,0.8); 
+  /*
   background-image : url("../../html/logo_element.svg");
   background-position : 15px;
   background-size: 45px 47px;
   background-repeat : no-repeat;
+  */
   text-align : right;			
+}
+
+#header_logo a {
+  position: absolute;
+  top: 0; left: 0px; right: 0;
+  height: 60px;
+  width: 60px;
+
+  padding-left: 15px;
+
+  background-image : url("../../html/logo_element.svg");
+  background-position : 15px;
+  background-size: 45px 47px;
+  background-repeat : no-repeat;
 }
 
 .html_details {
