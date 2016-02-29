@@ -17,12 +17,6 @@ body {
   right : 0;
   padding-right: 5px;
   background-color : rgba(0,0,0,0.8); 
-  /*
-  background-image : url("../../html/logo_element.svg");
-  background-position : 15px;
-  background-size: 45px 47px;
-  background-repeat : no-repeat;
-  */
   text-align : right;			
 }
 
@@ -56,11 +50,17 @@ body {
   pointer-events: none;
 }
 
-.footer {
-  position: absolute;
+#outer-footer {
+  width: 100%;
   text-align: center;
+}
+
+.footer {
+  display: inline-block;
+
+  position: absolute;
   bottom: 5px;
-  left: 37.5%;
+  margin-left: -225px;
   width: 450px;
   height: 75px;
 
